@@ -56,35 +56,33 @@ class MyGame(arcade.Window):
         self.score = 0
         self.player = arcade.AnimatedWalkingSprite()
 
+        #While the player isn't movie, the sprite will be standing
         character_scale = 0.75
         self.player.stand_right_textures = []
-        self.player.stand_right_textures.append(arcade.load_texture("images/character_sprites/character0.png",
+        self.player.stand_right_textures.append(arcade.load_texture("Images/Poses/female_stand.png",
                                                                     scale=character_scale))
+        
+        #When the player turns left, the sprite will flip
         self.player.stand_left_textures = []
-        self.player.stand_left_textures.append(arcade.load_texture("images/character_sprites/character0.png",
+        self.player.stand_left_textures.append(arcade.load_texture("Images/Poses/female_stand.png",
                                                                    scale=character_scale, mirrored=True))
 
+        #When the player moves, the sprite will play a walking animation
         self.player.walk_right_textures = []
 
-        self.player.walk_right_textures.append(arcade.load_texture("images/character_sprites/characterw0.png",
+        self.player.walk_right_textures.append(arcade.load_texture("Images/Poses/female_walk1.png",
                                                                    scale=character_scale))
-        self.player.walk_right_textures.append(arcade.load_texture("images/character_sprites/characterw1.png",
-                                                                   scale=character_scale))
-        self.player.walk_right_textures.append(arcade.load_texture("images/character_sprites/characterw2.png",
-                                                                   scale=character_scale))
-        self.player.walk_right_textures.append(arcade.load_texture("images/character_sprites/characterw3.png",
+        self.player.walk_right_textures.append(arcade.load_texture("Images/Poses/female_walk2.png",
                                                                    scale=character_scale))
 
+        #When the player moves left, the animation will flip
         self.player.walk_left_textures = []
 
-        self.player.walk_left_textures.append(arcade.load_texture("images/character_sprites/characterw0.png",
+        self.player.walk_left_textures.append(arcade.load_texture("Images/Poses/female_walk1.png",
                                                                   scale=character_scale, mirrored=True))
-        self.player.walk_left_textures.append(arcade.load_texture("images/character_sprites/characterw1.png",
+        self.player.walk_left_textures.append(arcade.load_texture("Images/Poses/female_walk2.png",
                                                                   scale=character_scale, mirrored=True))
-        self.player.walk_left_textures.append(arcade.load_texture("images/character_sprites/characterw2.png",
-                                                                  scale=character_scale, mirrored=True))
-        self.player.walk_left_textures.append(arcade.load_texture("images/character_sprites/characterw3.png",
-                                                                  scale=character_scale, mirrored=True))
+
 
         self.player.texture_change_distance = 20
 
@@ -99,13 +97,16 @@ class MyGame(arcade.Window):
             coin.center_x = random.randrange(SCREEN_WIDTH)
             coin.center_y = random.randrange(SCREEN_HEIGHT)
 
+            #adding the coin animation to a list.
             coin.textures = []
-            coin.textures.append(arcade.load_texture("images/gold_1.png", scale=COIN_SCALE))
-            coin.textures.append(arcade.load_texture("images/gold_2.png", scale=COIN_SCALE))
-            coin.textures.append(arcade.load_texture("images/gold_3.png", scale=COIN_SCALE))
-            coin.textures.append(arcade.load_texture("images/gold_4.png", scale=COIN_SCALE))
-            coin.textures.append(arcade.load_texture("images/gold_3.png", scale=COIN_SCALE))
-            coin.textures.append(arcade.load_texture("images/gold_2.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_01.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_02.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_03.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_04.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_05.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_06.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_07.png", scale=COIN_SCALE))
+            coin.textures.append(arcade.load_texture("Images/Coins/coin_08.png", scale=COIN_SCALE))
             coin.cur_texture_index = random.randrange(len(coin.textures))
 
             self.coin_list.append(coin)
@@ -133,6 +134,7 @@ class MyGame(arcade.Window):
         """
         Called whenever a key is pressed.
         """
+        #Defines the keys needed to move
         if key == arcade.key.UP:
             self.player.change_y = MOVEMENT_SPEED
         elif key == arcade.key.DOWN:
@@ -146,6 +148,7 @@ class MyGame(arcade.Window):
         """
         Called when the user releases a key.
         """
+        #When the user releases the keys, the players movement stops.
         if key == arcade.key.UP or key == arcade.key.DOWN:
             self.player.change_y = 0
         elif key == arcade.key.LEFT or key == arcade.key.RIGHT:

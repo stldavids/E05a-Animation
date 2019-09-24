@@ -9,11 +9,12 @@ python -m arcade.examples.move_mouse
 
 import arcade
 
+#Sets screen parameters
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 SCREEN_TITLE = "Move Mouse Example"
 
-
+#Defines class 'Ball'
 class Ball:
     def __init__(self, position_x, position_y, radius, color):
 
@@ -39,6 +40,7 @@ class MyGame(arcade.Window):
         # So we just see our object, not the pointer.
         self.set_mouse_visible(False)
 
+        #Sets BG color
         arcade.set_background_color(arcade.color.ASH_GREY)
 
         # Create our ball
@@ -46,11 +48,13 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         """ Called whenever we need to draw the window. """
+        #Draws the button
         arcade.start_render()
         self.ball.draw()
 
     def on_mouse_motion(self, x, y, dx, dy):
         """ Called to update our objects. Happens approximately 60 times per second."""
+        #As the mouse moves, the position of the button will be updated to match
         self.ball.position_x = x
         self.ball.position_y = y
 
@@ -58,6 +62,8 @@ class MyGame(arcade.Window):
         """
         Called when the user presses a mouse button.
         """
+        #When you click your mouse, the program will print 1 if you pressed the left mouse button, and 4 if you pressed the right.
+        #If you press the left mouse, the color of the button changes to black.
         print(f"You clicked button number: {button}")
         if button == arcade.MOUSE_BUTTON_LEFT:
             self.ball.color = arcade.color.BLACK
@@ -66,6 +72,7 @@ class MyGame(arcade.Window):
         """
         Called when a user releases a mouse button.
         """
+        #When you release the left mouse button, the ball changes back to auburn
         if button == arcade.MOUSE_BUTTON_LEFT:
             self.ball.color = arcade.color.AUBURN
 

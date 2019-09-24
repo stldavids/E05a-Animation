@@ -59,6 +59,7 @@ class MyGame(arcade.Window):
         # So we just see our object, not the pointer.
         self.set_mouse_visible(False)
 
+        #Set BG color
         arcade.set_background_color(arcade.color.ASH_GREY)
 
         # Create our ball
@@ -66,14 +67,18 @@ class MyGame(arcade.Window):
 
     def on_draw(self):
         """ Called whenever we need to draw the window. """
+        #Draws ball
         arcade.start_render()
         self.ball.draw()
 
     def update(self, delta_time):
+        #Updates the balls position constantly
         self.ball.update()
 
     def on_key_press(self, key, modifiers):
         """ Called whenever the user presses a key. """
+
+        #Defines which direction the ball should move depending on which the player presses.
         if key == arcade.key.LEFT:
             self.ball.change_x = -MOVEMENT_SPEED
         elif key == arcade.key.RIGHT:
@@ -85,6 +90,7 @@ class MyGame(arcade.Window):
 
     def on_key_release(self, key, modifiers):
         """ Called whenever a user releases a key. """
+        #When no key is pressed, the ball stops moving
         if key == arcade.key.LEFT or key == arcade.key.RIGHT:
             self.ball.change_x = 0
         elif key == arcade.key.UP or key == arcade.key.DOWN:
